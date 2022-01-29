@@ -87,17 +87,22 @@ namespace Verbum.Identity.Controllers
 
             };
 
-            var verbumUser = new VerbumUser
-            {
-                NickName = viewModel.UserName,
-                Email = viewModel.Email,
-                IsOnline = false,
-                UserRegistrationDate = DateTime.UtcNow
-            };
+            
 
             var result = await _userManager.CreateAsync(User, viewModel.Password);
             if (result.Succeeded) {
                 await _signInManager.SignInAsync(User, false);
+                var currentUser = await _userManager.FindByNameAsync(viewModel.UserName);
+
+                var verbumUser = new VerbumUser
+                {
+                    Id = Guid.Parse(currentUser.Id),
+                    NickName = viewModel.UserName,
+                    Email = viewModel.Email,
+                    IsOnline = false,
+                    UserRegistrationDate = DateTime.UtcNow
+                };
+
                 await _userContext.Users.AddAsync(verbumUser);
                 await _userContext.SaveChangesAsync();
                 return Redirect(viewModel.ReturnUrl);
