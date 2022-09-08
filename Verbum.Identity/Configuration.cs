@@ -35,21 +35,20 @@ namespace Verbum.Identity
                     RequireClientSecret = false,
                     RequirePkce = true,
                     RedirectUris = {
-                        //"http://localhost:8080/oidc-callback"
-                        "http://localhost:8080/auth/signinwin/main"
+                        "https://localhost:8080/auth/signinwin/main"
                     },
                     AllowedCorsOrigins = {
-                        "http://localhost:8080"
+                        "https://localhost:8080"
                     },
                     PostLogoutRedirectUris = {
-                        "http://localhost:8080/"
+                        "https://localhost:8080/"
                     },
                     AllowedScopes = { 
                        IdentityServerConstants.StandardScopes.OpenId,
                        IdentityServerConstants.StandardScopes.Profile,
                        "VerbumWebAPI"
                     },
-                    AllowAccessTokensViaBrowser = true
+                    AllowAccessTokensViaBrowser = true 
                 }
             };
     }
