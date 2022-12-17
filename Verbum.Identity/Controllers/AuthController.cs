@@ -40,7 +40,7 @@ namespace Verbum.Identity.Controllers
 
             var user = await _userManager.FindByNameAsync(viewModel.UserName);
             if (user == null) {
-                ModelState.AddModelError(string.Empty, "User not found");
+                ModelState.AddModelError(string.Empty, "Користувача з таким нікнеймом не знайдено");
                 return View(viewModel);
             }
 
@@ -48,7 +48,7 @@ namespace Verbum.Identity.Controllers
             if (result.Succeeded) {
                 return Redirect(viewModel.ReturnUrl);
             }
-            ModelState.AddModelError(string.Empty, "Login error");
+            ModelState.AddModelError(string.Empty, "Помилка авторизації");
             return View(viewModel);
         }
 
@@ -76,7 +76,7 @@ namespace Verbum.Identity.Controllers
 
             if (userTmpEmail != null || userTmpName != null)
             {
-                ModelState.AddModelError(string.Empty, "User or email already exists");
+                ModelState.AddModelError(string.Empty, "Нікнейм або пошта вже існують");
                 return View(viewModel);
             }
 
@@ -107,7 +107,8 @@ namespace Verbum.Identity.Controllers
                 await _userContext.SaveChangesAsync();
                 return Redirect(viewModel.ReturnUrl);
             }
-            ModelState.AddModelError(string.Empty, "Error occurred");
+            ModelState.AddModelError(string.Empty, "Помилка реєстрації! Зверніть увагу!!! Пароль повинен бути не меньше 6 символів," +
+                " також повинен включати хоч би одну цифру, маленьку та великі літери");
             return View(viewModel);
 
         }

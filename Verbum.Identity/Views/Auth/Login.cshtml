@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="@Url.Content("~/styles/main.css")" rel="stylesheet" type="text/css" />
+    <title>Login</title>
 </head>
 
 <body>
@@ -16,13 +17,13 @@
             <form asp-controller="Auth" asp-action="Login" method="post" class="main-form">
                 <input type="hidden" asp-for="ReturnUrl" />
                 <div class="inputBox">
-                    <input type="text" id="InputUsername" asp-for="UserName" class="form-control" required="required" autocomplete="off">
+                    <input type="text"  asp-for="UserName" class="form-control" required="required" autocomplete="off">
                     <span>Нікнейм</span>
                     <i></i>
                     <p class="info-span" asp-validation-for="UserName"></p>
                 </div>
                 <div class="inputBox">
-                    <input type="password" id="InputPassword" asp-for="Password" class="form-control" required="required">
+                    <input type="password"  asp-for="Password" class="form-control" required="required">
                     <span>Пароль</span>
                     <i></i>
                     <p class="info-span" asp-validation-for="Password"></p>
@@ -40,3 +41,4 @@
     </div>
     <script src="@Url.Content("~/styles/js/script.js")"></script>
 </body>
+
