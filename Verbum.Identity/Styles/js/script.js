@@ -1,6 +1,6 @@
 ﻿const inputs = document.querySelectorAll('.form-control');
 const infoSpans = document.querySelectorAll('.info-span');
-const messageBox = document.getElementById('message-box');
+const messageBox = document.querySelector('.message-box');
 const submit = document.getElementById('submitButton');
 
 

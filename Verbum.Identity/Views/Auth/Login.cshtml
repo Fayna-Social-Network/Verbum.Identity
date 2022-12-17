@@ -1,66 +1,42 @@
 ﻿@model LoginViewModel
 <head>
-	 <meta charset="utf-8"/>
-     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>  
-     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-	 <link href="@Url.Content("~/styles/bootstrap.min.css")" rel="stylesheet" type="text/css"/>
-	 <link href="@Url.Content("~/styles/style.css")" rel="stylesheet" type="text/css"/>
-	</head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="@Url.Content("~/styles/main.css")" rel="stylesheet" type="text/css" />
+</head>
 
-<body class="bg-theme bg-theme1">
- <div id="wrapper">
-
-	<div class="card card-authentication1 mx-auto my-5">
-		<div class="card-body">
-		 <div class="card-content p-2">
-		 	<div class="text-center">
-		 		<img src="@Url.Content("~/styles/images/logo-icon.png")" alt="logo icon">
-		 	</div>
-			  	<div class="text-center">
-		 		<img src="@Url.Content("~/styles/images/text-logo2.png")" alt="logo icon">
-		 	</div>
-		  <div class="card-title text-uppercase text-center py-3">Sign In</div>
-		    <form asp-controller="Auth" asp-action="Login" method="post">
-				<input type="hidden" asp-for="ReturnUrl" />
-			  <div class="form-group">
-			  <label for="InputUsername" class="sr-only">Nickname</label>
-			   <div class="position-relative has-icon-right">
-				  <input type="text" id="InputUsername" asp-for="UserName" class="form-control input-shadow" placeholder="Enter Nickname">
-				  <div class="form-control-position">
-					<img class="image-input" src = "@Url.Content("~/styles/images/user.svg")"/>
-				  </div>
-				    <span class="info-span" asp-validation-for="UserName"></span>
-			   </div>
-			  </div>
-			  <div class="form-group">
-			  <label for="InputPassword" class="sr-only">Password</label>
-			   <div class="position-relative has-icon-right">
-				  <input type="password" id="InputPassword"  asp-for="Password" class="form-control input-shadow" placeholder="Enter Password">
-				  <div class="form-control-position">
-					 <img class="image-input" src = "@Url.Content("~/styles/images/lock.svg")"/>
-				  </div>
-				   <span class="info-span" asp-validation-for="Password"></span>
-			   </div>
-			  </div>
-
-			 <button type="submit" id="submitButton" class="btn btn-light btn-block">Sign In</button>
-			
-			 </form>
-		   </div>
-		  </div>
-		  <div class="card-footer text-center py-3">
-		    <p class="text-warning mb-0">Do not have an account?
-				 <a asp-controller="Auth" asp-action="Register" asp-route-ReturnUrl="@Model.ReturnUrl">Sing Up Here</a>
-				</p>
-		  </div>
-	     </div>
-		 
-			<div id="message-box">
-				  @Html.ValidationSummary()
-			</div>
-				
-	</div>
-			<script src = "@Url.Content("~/styles/js/index.js")"></script>
+<body>
+    <div class="box">
+        <div class="form">
+            <div class="logo">
+                <img src="@Url.Content("~/styles/images/logo-icon.png")" alt="logo-icon">
+                <img class="logo-text" src="@Url.Content("~/styles/images/logo-text.png")" alt="logo-text">
+            </div>
+            <form asp-controller="Auth" asp-action="Login" method="post" class="main-form">
+                <input type="hidden" asp-for="ReturnUrl" />
+                <div class="inputBox">
+                    <input type="text" id="InputUsername" asp-for="UserName" class="form-control" required="required" autocomplete="off">
+                    <span>Нікнейм</span>
+                    <i></i>
+                    <p class="info-span" asp-validation-for="UserName"></p>
+                </div>
+                <div class="inputBox">
+                    <input type="password" id="InputPassword" asp-for="Password" class="form-control" required="required">
+                    <span>Пароль</span>
+                    <i></i>
+                    <p class="info-span" asp-validation-for="Password"></p>
+                </div>
+                <div class="links">
+                    <a href="#">Забули пароль?</a>
+                    <a asp-controller="Auth" asp-action="Register" asp-route-ReturnUrl="@Model.ReturnUrl">Зареєструватись</a>
+                </div>
+                <input type="submit" id="submitButton" value="Увійти">
+            </form>
+        </div>
+    </div>
+    <div class="message-box">
+        @Html.ValidationSummary()
+    </div>
+    <script src="@Url.Content("~/styles/js/script.js")"></script>
 </body>
-
-
